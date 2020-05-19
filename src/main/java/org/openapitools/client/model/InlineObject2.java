@@ -12,42 +12,31 @@
 
 package org.openapitools.client.model;
 
+import java.io.File;
 import io.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
 
 @ApiModel(description = "")
-public class InlineObject {
+public class InlineObject2 {
   
-  @SerializedName("image_url")
-  private String imageUrl = null;
-  @SerializedName("tag")
-  private String tag = null;
+  @SerializedName("file")
+  private File file = null;
   @SerializedName("model_id")
   private String modelId = null;
 
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
-  public String getImageUrl() {
-    return imageUrl;
+  @ApiModelProperty(value = "")
+  public File getFile() {
+    return file;
   }
-  public void setImageUrl(String imageUrl) {
-    this.imageUrl = imageUrl;
-  }
-
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
-  public String getTag() {
-    return tag;
-  }
-  public void setTag(String tag) {
-    this.tag = tag;
+  public void setFile(File file) {
+    this.file = file;
   }
 
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getModelId() {
     return modelId;
   }
@@ -64,17 +53,15 @@ public class InlineObject {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineObject inlineObject = (InlineObject) o;
-    return (this.imageUrl == null ? inlineObject.imageUrl == null : this.imageUrl.equals(inlineObject.imageUrl)) &&
-        (this.tag == null ? inlineObject.tag == null : this.tag.equals(inlineObject.tag)) &&
-        (this.modelId == null ? inlineObject.modelId == null : this.modelId.equals(inlineObject.modelId));
+    InlineObject2 inlineObject2 = (InlineObject2) o;
+    return (this.file == null ? inlineObject2.file == null : this.file.equals(inlineObject2.file)) &&
+        (this.modelId == null ? inlineObject2.modelId == null : this.modelId.equals(inlineObject2.modelId));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
-    result = 31 * result + (this.imageUrl == null ? 0: this.imageUrl.hashCode());
-    result = 31 * result + (this.tag == null ? 0: this.tag.hashCode());
+    result = 31 * result + (this.file == null ? 0: this.file.hashCode());
     result = 31 * result + (this.modelId == null ? 0: this.modelId.hashCode());
     return result;
   }
@@ -82,10 +69,9 @@ public class InlineObject {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineObject {\n");
+    sb.append("class InlineObject2 {\n");
     
-    sb.append("  imageUrl: ").append(imageUrl).append("\n");
-    sb.append("  tag: ").append(tag).append("\n");
+    sb.append("  file: ").append(file).append("\n");
     sb.append("  modelId: ").append(modelId).append("\n");
     sb.append("}\n");
     return sb.toString();

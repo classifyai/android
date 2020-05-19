@@ -1,14 +1,13 @@
 
 
-# InlineObject
+# InlineObject2
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**imageUrl** | **String** |  | 
-**tag** | **String** |  | 
-**modelId** | **String** |  | 
+**file** | [**File**](File.md) |  |  [optional]
+**modelId** | **String** |  |  [optional]
 
 
 

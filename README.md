@@ -85,7 +85,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**createNewModel**](docs/DefaultApi.md#createNewModel) | **PUT** /models | Create New Model
 *DefaultApi* | [**deleteModel**](docs/DefaultApi.md#deleteModel) | **DELETE** /models | Delete Model
 *DefaultApi* | [**getModelsList**](docs/DefaultApi.md#getModelsList) | **GET** /models | Get Models List
-*DefaultApi* | [**indexByImageUrl**](docs/DefaultApi.md#indexByImageUrl) | **GET** /index_by_image_url | Index by Using Image URL
+*DefaultApi* | [**indexByImageUrl**](docs/DefaultApi.md#indexByImageUrl) | **POST** /index_by_image_url | Index by Using Image URL
 *DefaultApi* | [**indexImage**](docs/DefaultApi.md#indexImage) | **POST** /index_image | Index Local Image
 *DefaultApi* | [**tagImageByUrl**](docs/DefaultApi.md#tagImageByUrl) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 *DefaultApi* | [**tagLocalImage**](docs/DefaultApi.md#tagLocalImage) | **POST** /predict | Predict by Image
@@ -96,6 +96,7 @@ Class | Method | HTTP request | Description
 
  - [InlineObject](docs/InlineObject.md)
  - [InlineObject1](docs/InlineObject1.md)
+ - [InlineObject2](docs/InlineObject2.md)
 
 
 ## Documentation for Authorization

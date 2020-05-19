@@ -19,8 +19,32 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "")
 public class InlineObject1 {
   
+  @SerializedName("model_id")
+  private String modelId = null;
+  @SerializedName("tag")
+  private String tag = null;
   @SerializedName("file")
   private File file = null;
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getModelId() {
+    return modelId;
+  }
+  public void setModelId(String modelId) {
+    this.modelId = modelId;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(value = "")
+  public String getTag() {
+    return tag;
+  }
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
 
   /**
    **/
@@ -42,12 +66,16 @@ public class InlineObject1 {
       return false;
     }
     InlineObject1 inlineObject1 = (InlineObject1) o;
-    return (this.file == null ? inlineObject1.file == null : this.file.equals(inlineObject1.file));
+    return (this.modelId == null ? inlineObject1.modelId == null : this.modelId.equals(inlineObject1.modelId)) &&
+        (this.tag == null ? inlineObject1.tag == null : this.tag.equals(inlineObject1.tag)) &&
+        (this.file == null ? inlineObject1.file == null : this.file.equals(inlineObject1.file));
   }
 
   @Override
   public int hashCode() {
     int result = 17;
+    result = 31 * result + (this.modelId == null ? 0: this.modelId.hashCode());
+    result = 31 * result + (this.tag == null ? 0: this.tag.hashCode());
     result = 31 * result + (this.file == null ? 0: this.file.hashCode());
     return result;
   }
@@ -57,6 +85,8 @@ public class InlineObject1 {
     StringBuilder sb = new StringBuilder();
     sb.append("class InlineObject1 {\n");
     
+    sb.append("  modelId: ").append(modelId).append("\n");
+    sb.append("  tag: ").append(tag).append("\n");
     sb.append("  file: ").append(file).append("\n");
     sb.append("}\n");
     return sb.toString();

@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import java.io.File;
+import org.openapitools.client.model.InlineObject;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -424,21 +425,15 @@ public class DefaultApi {
   /**
   * Index by Using Image URL
   * Index by Using Image URL
-   * @param modelId Model ID
-   * @param imageUrl Image URL
-   * @return String
+   * @param inlineObject 
+   * @return void
   */
-  public String indexByImageUrl (String modelId, String imageUrl) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = null;
-    // verify the required parameter 'modelId' is set
-    if (modelId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling indexByImageUrl",
-        new ApiException(400, "Missing the required parameter 'modelId' when calling indexByImageUrl"));
-    }
-    // verify the required parameter 'imageUrl' is set
-    if (imageUrl == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'imageUrl' when calling indexByImageUrl",
-        new ApiException(400, "Missing the required parameter 'imageUrl' when calling indexByImageUrl"));
+  public void indexByImageUrl (InlineObject inlineObject) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = inlineObject;
+    // verify the required parameter 'inlineObject' is set
+    if (inlineObject == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'inlineObject' when calling indexByImageUrl",
+        new ApiException(400, "Missing the required parameter 'inlineObject' when calling indexByImageUrl"));
     }
 
     // create path and map variables
@@ -450,9 +445,8 @@ public class DefaultApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "image_url", imageUrl));
     String[] contentTypes = {
+      "application/json"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -468,11 +462,11 @@ public class DefaultApi {
     String[] authNames = new String[] { "x-api-key" };
 
     try {
-      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return (String) ApiInvoker.deserialize(localVarResponse, "", String.class);
+         return ;
       } else {
-         return null;
+         return ;
       }
     } catch (ApiException ex) {
        throw ex;
@@ -494,20 +488,15 @@ public class DefaultApi {
       /**
    * Index by Using Image URL
    * Index by Using Image URL
-   * @param modelId Model ID   * @param imageUrl Image URL
+   * @param inlineObject 
   */
-  public void indexByImageUrl (String modelId, String imageUrl, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = null;
+  public void indexByImageUrl (InlineObject inlineObject, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = inlineObject;
 
-    // verify the required parameter 'modelId' is set
-    if (modelId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling indexByImageUrl",
-        new ApiException(400, "Missing the required parameter 'modelId' when calling indexByImageUrl"));
-    }
-    // verify the required parameter 'imageUrl' is set
-    if (imageUrl == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'imageUrl' when calling indexByImageUrl",
-        new ApiException(400, "Missing the required parameter 'imageUrl' when calling indexByImageUrl"));
+    // verify the required parameter 'inlineObject' is set
+    if (inlineObject == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'inlineObject' when calling indexByImageUrl",
+        new ApiException(400, "Missing the required parameter 'inlineObject' when calling indexByImageUrl"));
     }
 
     // create path and map variables
@@ -520,12 +509,10 @@ public class DefaultApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "image_url", imageUrl));
 
 
     String[] contentTypes = {
-      
+      "application/json"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -543,15 +530,11 @@ public class DefaultApi {
     String[] authNames = new String[] { "x-api-key" };
 
     try {
-      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
         new Response.Listener<String>() {
           @Override
           public void onResponse(String localVarResponse) {
-            try {
-              responseListener.onResponse((String) ApiInvoker.deserialize(localVarResponse,  "", String.class));
-            } catch (ApiException exception) {
-               errorListener.onErrorResponse(new VolleyError(exception));
-            }
+              responseListener.onResponse(localVarResponse);
           }
       }, new Response.ErrorListener() {
           @Override
@@ -566,17 +549,13 @@ public class DefaultApi {
   /**
   * Index Local Image
   * Index Local Image
-   * @param modelId Model ID
+   * @param modelId 
+   * @param tag 
    * @param file 
    * @return String
   */
-  public String indexImage (String modelId, File file) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public String indexImage (String modelId, String tag, File file) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'modelId' is set
-    if (modelId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling indexImage",
-        new ApiException(400, "Missing the required parameter 'modelId' when calling indexImage"));
-    }
 
     // create path and map variables
     String path = "/index_image";
@@ -587,7 +566,6 @@ public class DefaultApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
     String[] contentTypes = {
       "multipart/form-data"
     };
@@ -596,6 +574,12 @@ public class DefaultApi {
     if (contentType.startsWith("multipart/form-data")) {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (modelId != null) {
+        localVarBuilder.addTextBody("model_id", ApiInvoker.parameterToString(modelId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      if (tag != null) {
+        localVarBuilder.addTextBody("tag", ApiInvoker.parameterToString(tag), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       if (file != null) {
         localVarBuilder.addBinaryBody("file", file);
       }
@@ -603,6 +587,8 @@ public class DefaultApi {
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("model_id", ApiInvoker.parameterToString(modelId));
+      formParams.put("tag", ApiInvoker.parameterToString(tag));
     }
 
     String[] authNames = new String[] { "x-api-key" };
@@ -634,16 +620,11 @@ public class DefaultApi {
       /**
    * Index Local Image
    * Index Local Image
-   * @param modelId Model ID   * @param file 
+   * @param modelId    * @param tag    * @param file 
   */
-  public void indexImage (String modelId, File file, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+  public void indexImage (String modelId, String tag, File file, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'modelId' is set
-    if (modelId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling indexImage",
-        new ApiException(400, "Missing the required parameter 'modelId' when calling indexImage"));
-    }
 
     // create path and map variables
     String path = "/index_image".replaceAll("\\{format\\}","json");
@@ -655,7 +636,6 @@ public class DefaultApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
 
 
     String[] contentTypes = {
@@ -667,6 +647,14 @@ public class DefaultApi {
       // file uploading
       MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
       
+      if (modelId != null) {
+        localVarBuilder.addTextBody("model_id", ApiInvoker.parameterToString(modelId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
+      if (tag != null) {
+        localVarBuilder.addTextBody("tag", ApiInvoker.parameterToString(tag), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
       if (file != null) {
         localVarBuilder.addBinaryBody("file", file);
       }
@@ -676,7 +664,9 @@ public class DefaultApi {
       postBody = httpEntity;
     } else {
       // normal form params
-      
+      formParams.put("model_id", ApiInvoker.parameterToString(modelId));
+formParams.put("tag", ApiInvoker.parameterToString(tag));
+
     }
 
     String[] authNames = new String[] { "x-api-key" };
@@ -843,17 +833,12 @@ public class DefaultApi {
   /**
   * Predict by Image
   * Send a local image to tag
-   * @param modelId Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard.
    * @param file 
+   * @param modelId 
    * @return void
   */
-  public void tagLocalImage (String modelId, File file) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public void tagLocalImage (File file, String modelId) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
-    // verify the required parameter 'modelId' is set
-    if (modelId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling tagLocalImage",
-        new ApiException(400, "Missing the required parameter 'modelId' when calling tagLocalImage"));
-    }
 
     // create path and map variables
     String path = "/predict";
@@ -864,7 +849,6 @@ public class DefaultApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
     String[] contentTypes = {
       "multipart/form-data"
     };
@@ -876,10 +860,14 @@ public class DefaultApi {
       if (file != null) {
         localVarBuilder.addBinaryBody("file", file);
       }
+      if (modelId != null) {
+        localVarBuilder.addTextBody("model_id", ApiInvoker.parameterToString(modelId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
+      formParams.put("model_id", ApiInvoker.parameterToString(modelId));
     }
 
     String[] authNames = new String[] { "x-api-key" };
@@ -911,16 +899,11 @@ public class DefaultApi {
       /**
    * Predict by Image
    * Send a local image to tag
-   * @param modelId Type your trained model id to predict. You get your model&#39;s id from Classify Dashboard.   * @param file 
+   * @param file    * @param modelId 
   */
-  public void tagLocalImage (String modelId, File file, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+  public void tagLocalImage (File file, String modelId, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
     Object postBody = null;
 
-    // verify the required parameter 'modelId' is set
-    if (modelId == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling tagLocalImage",
-        new ApiException(400, "Missing the required parameter 'modelId' when calling tagLocalImage"));
-    }
 
     // create path and map variables
     String path = "/predict".replaceAll("\\{format\\}","json");
@@ -932,7 +915,6 @@ public class DefaultApi {
     // form params
     Map<String, String> formParams = new HashMap<String, String>();
 
-    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
 
 
     String[] contentTypes = {
@@ -948,12 +930,17 @@ public class DefaultApi {
         localVarBuilder.addBinaryBody("file", file);
       }
       
+      if (modelId != null) {
+        localVarBuilder.addTextBody("model_id", ApiInvoker.parameterToString(modelId), ApiInvoker.TEXT_PLAIN_UTF8);
+      }
+      
 
       HttpEntity httpEntity = localVarBuilder.build();
       postBody = httpEntity;
     } else {
       // normal form params
       
+formParams.put("model_id", ApiInvoker.parameterToString(modelId));
     }
 
     String[] authNames = new String[] { "x-api-key" };
