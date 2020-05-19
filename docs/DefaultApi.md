@@ -1,12 +1,14 @@
 # DefaultApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.classifyai.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createNewModel**](DefaultApi.md#createNewModel) | **PUT** /models | Create New Model
 [**deleteModel**](DefaultApi.md#deleteModel) | **DELETE** /models | Delete Model
 [**getModelsList**](DefaultApi.md#getModelsList) | **GET** /models | Get Models List
+[**indexByImageUrl**](DefaultApi.md#indexByImageUrl) | **GET** /index_by_image_url | Index by Using Image URL
+[**indexImage**](DefaultApi.md#indexImage) | **POST** /index_image | Index Local Image
 [**tagImageByUrl**](DefaultApi.md#tagImageByUrl) | **GET** /predict_by_image_url | Tag Image by Using Image Url
 [**tagLocalImage**](DefaultApi.md#tagLocalImage) | **POST** /predict | Predict by Image
 [**updateModel**](DefaultApi.md#updateModel) | **POST** /models | Update Model
@@ -105,7 +107,7 @@ null (empty response body)
 
 ## getModelsList
 
-> getModelsList()
+> String getModelsList()
 
 Get Models List
 
@@ -119,7 +121,8 @@ Get the list of of models created
 
 DefaultApi apiInstance = new DefaultApi();
 try {
-    apiInstance.getModelsList();
+    String result = apiInstance.getModelsList();
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DefaultApi#getModelsList");
     e.printStackTrace();
@@ -132,7 +135,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+**String**
 
 ### Authorization
 
@@ -141,6 +144,102 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## indexByImageUrl
+
+> String indexByImageUrl(modelId, imageUrl)
+
+Index by Using Image URL
+
+Index by Using Image URL
+
+### Example
+
+```java
+// Import classes:
+//import org.openapitools.client.api.DefaultApi;
+
+DefaultApi apiInstance = new DefaultApi();
+String modelId = null; // String | Model ID
+String imageUrl = null; // String | Image URL
+try {
+    String result = apiInstance.indexByImageUrl(modelId, imageUrl);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DefaultApi#indexByImageUrl");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **modelId** | **String**| Model ID | [default to null]
+ **imageUrl** | **String**| Image URL | [default to null]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## indexImage
+
+> String indexImage(modelId, file)
+
+Index Local Image
+
+Index Local Image
+
+### Example
+
+```java
+// Import classes:
+//import org.openapitools.client.api.DefaultApi;
+
+DefaultApi apiInstance = new DefaultApi();
+String modelId = null; // String | Model ID
+File file = null; // File | 
+try {
+    String result = apiInstance.indexImage(modelId, file);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DefaultApi#indexImage");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **modelId** | **String**| Model ID | [default to null]
+ **file** | **File**|  | [optional] [default to null]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[x-api-key](../README.md#x-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 

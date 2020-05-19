@@ -308,9 +308,9 @@ public class DefaultApi {
   /**
   * Get Models List
   * Get the list of of models created 
-   * @return void
+   * @return String
   */
-  public void getModelsList () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+  public String getModelsList () throws TimeoutException, ExecutionException, InterruptedException, ApiException {
     Object postBody = null;
 
     // create path and map variables
@@ -340,9 +340,9 @@ public class DefaultApi {
     try {
       String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
       if (localVarResponse != null) {
-         return ;
+         return (String) ApiInvoker.deserialize(localVarResponse, "", String.class);
       } else {
-         return ;
+         return null;
       }
     } catch (ApiException ex) {
        throw ex;
@@ -405,7 +405,292 @@ public class DefaultApi {
         new Response.Listener<String>() {
           @Override
           public void onResponse(String localVarResponse) {
-              responseListener.onResponse(localVarResponse);
+            try {
+              responseListener.onResponse((String) ApiInvoker.deserialize(localVarResponse,  "", String.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Index by Using Image URL
+  * Index by Using Image URL
+   * @param modelId Model ID
+   * @param imageUrl Image URL
+   * @return String
+  */
+  public String indexByImageUrl (String modelId, String imageUrl) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'modelId' is set
+    if (modelId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling indexByImageUrl",
+        new ApiException(400, "Missing the required parameter 'modelId' when calling indexByImageUrl"));
+    }
+    // verify the required parameter 'imageUrl' is set
+    if (imageUrl == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'imageUrl' when calling indexByImageUrl",
+        new ApiException(400, "Missing the required parameter 'imageUrl' when calling indexByImageUrl"));
+    }
+
+    // create path and map variables
+    String path = "/index_by_image_url";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "image_url", imageUrl));
+    String[] contentTypes = {
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "x-api-key" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (String) ApiInvoker.deserialize(localVarResponse, "", String.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Index by Using Image URL
+   * Index by Using Image URL
+   * @param modelId Model ID   * @param imageUrl Image URL
+  */
+  public void indexByImageUrl (String modelId, String imageUrl, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'modelId' is set
+    if (modelId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling indexByImageUrl",
+        new ApiException(400, "Missing the required parameter 'modelId' when calling indexByImageUrl"));
+    }
+    // verify the required parameter 'imageUrl' is set
+    if (imageUrl == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'imageUrl' when calling indexByImageUrl",
+        new ApiException(400, "Missing the required parameter 'imageUrl' when calling indexByImageUrl"));
+    }
+
+    // create path and map variables
+    String path = "/index_by_image_url".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "image_url", imageUrl));
+
+
+    String[] contentTypes = {
+      
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+          }
+
+    String[] authNames = new String[] { "x-api-key" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((String) ApiInvoker.deserialize(localVarResponse,  "", String.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
+          }
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+            errorListener.onErrorResponse(error);
+          }
+      });
+    } catch (ApiException ex) {
+      errorListener.onErrorResponse(new VolleyError(ex));
+    }
+  }
+  /**
+  * Index Local Image
+  * Index Local Image
+   * @param modelId Model ID
+   * @param file 
+   * @return String
+  */
+  public String indexImage (String modelId, File file) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = null;
+    // verify the required parameter 'modelId' is set
+    if (modelId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling indexImage",
+        new ApiException(400, "Missing the required parameter 'modelId' when calling indexImage"));
+    }
+
+    // create path and map variables
+    String path = "/index_image";
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
+    String[] contentTypes = {
+      "multipart/form-data"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      if (file != null) {
+        localVarBuilder.addBinaryBody("file", file);
+      }
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+    }
+
+    String[] authNames = new String[] { "x-api-key" };
+
+    try {
+      String localVarResponse = apiInvoker.invokeAPI (basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames);
+      if (localVarResponse != null) {
+         return (String) ApiInvoker.deserialize(localVarResponse, "", String.class);
+      } else {
+         return null;
+      }
+    } catch (ApiException ex) {
+       throw ex;
+    } catch (InterruptedException ex) {
+       throw ex;
+    } catch (ExecutionException ex) {
+      if (ex.getCause() instanceof VolleyError) {
+        VolleyError volleyError = (VolleyError)ex.getCause();
+        if (volleyError.networkResponse != null) {
+          throw new ApiException(volleyError.networkResponse.statusCode, volleyError.getMessage());
+        }
+      }
+      throw ex;
+    } catch (TimeoutException ex) {
+      throw ex;
+    }
+  }
+
+      /**
+   * Index Local Image
+   * Index Local Image
+   * @param modelId Model ID   * @param file 
+  */
+  public void indexImage (String modelId, File file, final Response.Listener<String> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = null;
+
+    // verify the required parameter 'modelId' is set
+    if (modelId == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'modelId' when calling indexImage",
+        new ApiException(400, "Missing the required parameter 'modelId' when calling indexImage"));
+    }
+
+    // create path and map variables
+    String path = "/index_image".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> queryParams = new ArrayList<Pair>();
+    // header params
+    Map<String, String> headerParams = new HashMap<String, String>();
+    // form params
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    queryParams.addAll(ApiInvoker.parameterToPairs("", "model_id", modelId));
+
+
+    String[] contentTypes = {
+      "multipart/form-data"
+    };
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if (contentType.startsWith("multipart/form-data")) {
+      // file uploading
+      MultipartEntityBuilder localVarBuilder = MultipartEntityBuilder.create();
+      
+      if (file != null) {
+        localVarBuilder.addBinaryBody("file", file);
+      }
+      
+
+      HttpEntity httpEntity = localVarBuilder.build();
+      postBody = httpEntity;
+    } else {
+      // normal form params
+      
+    }
+
+    String[] authNames = new String[] { "x-api-key" };
+
+    try {
+      apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType, authNames,
+        new Response.Listener<String>() {
+          @Override
+          public void onResponse(String localVarResponse) {
+            try {
+              responseListener.onResponse((String) ApiInvoker.deserialize(localVarResponse,  "", String.class));
+            } catch (ApiException exception) {
+               errorListener.onErrorResponse(new VolleyError(exception));
+            }
           }
       }, new Response.ErrorListener() {
           @Override
